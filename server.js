@@ -8,6 +8,7 @@ const findSlots = require('./controlers/findSlots');
 const bookAppoinment = require('./controlers/bookAppoinment');
 const cancelAppointment = require('./controlers/cancelAppointment');
 const createCustomer = require('./controlers/createCustomer');
+const getServiceByMerchant = require('./controlers/getServiceByMerchant');
 
 app.use(express.json());
 
@@ -22,6 +23,7 @@ const findSlotsController = createAuthenticatedController(shoreAuth, findSlots);
 const bookAppoinmentController = createAuthenticatedController(shoreAuth, bookAppoinment);
 const cancelAppointmentController = createAuthenticatedController(shoreAuth, cancelAppointment);
 const createCustomerController = createAuthenticatedController(shoreAuth, createCustomer);
+const getServiceByMerchantController = createAuthenticatedController(shoreAuth, getServiceByMerchant);
 
 
 const ensureAuth = async (req, res, next) => {
@@ -38,12 +40,13 @@ const ensureAuth = async (req, res, next) => {
 app.use(ensureAuth)
 
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.send('App is running');
 });
 app.post('/findSlots', findSlotsController);
 app.post('/bookAppointment', bookAppoinmentController);
 app.post('/cancelAppointment', cancelAppointmentController);
 app.post('/createCustomer', createCustomerController);
+app.post('/servicesInMerchant', getServiceByMerchantController)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
