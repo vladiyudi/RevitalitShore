@@ -45,6 +45,60 @@ const customerForm = (name, lastName, email, phone, merchantId) => {
     }
 }
 
+
+
+const bookApointmentForm = (merchantId, serviceId, startTime, duration, title, customerId) => {
+    return {
+            "data": {
+                "type": "appointments",
+                "attributes": {
+                    "starts_at": startTime,
+                    "title": title,
+                    "origin": "merchant_backend",
+                    "color": "#FFA500",
+                    "participant_count": 1,
+                    "subject": "Some Subject",
+                    "service_ids": [serviceId],
+                    "address": {
+                        "line1": "",
+                        "line2": "",
+                        "city": "",
+                        "state": "",
+                        "country": "DE",
+                        "postal_code": ""
+                    },
+                    "steps": [
+                        {
+                            "name": "Working step",
+                            "break": false,
+                            "with_customer": true,
+                            "duration": duration,
+                            "resource_ids": [],
+                            "service_id": serviceId,
+                            "employee_selected_by": "customer"
+                        }
+                    ]
+                },
+                "relationships": {
+                    "merchant": {
+                        "data": {
+                            "type": "merchants",
+                            "id": merchantId
+                        }
+                    },
+                    "customer": {
+                        "data": {
+                            "type": "customers",
+                            "id": customerId
+                        }
+                    },
+                    "attachments": { "data": [] }
+                }
+            }
+        };
+    }
+
 module.exports = {
-    customerForm
+    customerForm,
+    bookApointmentForm
 }
