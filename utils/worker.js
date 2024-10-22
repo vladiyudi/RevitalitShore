@@ -21,9 +21,10 @@ function findServiceByNameAndMerchant(servicesArray, serviceName, merchantId) {
 
 
 function extractServicesData(servicesArray) {
+
     return servicesArray.map(service => {
         const { id: serviceId, attributes } = service;
-        const { name, duration, cost, description } = attributes;
+        const { name, duration, cost, description, category_name } = attributes;
         const { amount } = cost;
 
         return {
@@ -33,6 +34,7 @@ function extractServicesData(servicesArray) {
             cost: amount,
             description,
             merchantId: service.relationships.merchant.data.id,
+            category: category_name
         };
     });
 }
