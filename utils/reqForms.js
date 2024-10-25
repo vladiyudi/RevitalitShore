@@ -53,11 +53,11 @@ const bookApointmentForm = (merchantId, serviceId, startTime, duration, title, c
                 "type": "appointments",
                 "attributes": {
                     "starts_at": startTime,
-                    "title": title,
+                    "title": "Appointment from Bot",
                     "origin": "merchant_backend",
                     "color": "#FFA500",
                     "participant_count": 1,
-                    "subject": "Some Subject",
+                    "subject": title,
                     "service_ids": [serviceId],
                     "address": {
                         "line1": "",
