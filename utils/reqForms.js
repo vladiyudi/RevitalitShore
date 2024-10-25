@@ -93,7 +93,7 @@ const bookApointmentForm = (merchantId, serviceId, startTime, duration, title, c
                         }
                     },
                     "attachments": { 
-                        "data": [title]}
+                        "data": []}
                 }
             }
         };
