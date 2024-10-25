@@ -1,3 +1,13 @@
+const MultpleNotificationToBotpress = require('./NotificationBotpress');
+
+function filterAppointments(appointments) {
+    return appointments.filter(appointment => 
+        appointment.attributes.subject &&
+        appointment.attributes.state === "accepted"
+    );
+}
+
+
 async function sendNotifications(req, res, shoreAuth) {
     console.log('Starting daily task at:', new Date().toLocaleString());
 
@@ -15,17 +25,18 @@ async function sendNotifications(req, res, shoreAuth) {
     const startTime = new Date(tomorrow);
         startTime.setHours(9, 0, 0, 0);
         
-    const endTime = new Date(later);
+    const endTime = new Date(tomorrow);
         endTime.setHours(21, 0, 0, 0);
 
         const params = new URLSearchParams({
             'filter[starts_at.gt]': startTime.toISOString(),
-            'filter[starts_at.lt]': endTime.toISOString()
+            'filter[starts_at.lt]': endTime.toISOString(), 
+            "page[size]":1000
         }).toString();
 
     try {
         const response = await shoreAuth.makeAuthenticatedRequest('get', `/v2/appointments?${params}`, headers);
-        console.log(response.data);
+        await MultpleNotificationToBotpress(filterAppointments(response.data))
         console.log('Daily task completed at:', new Date().toLocaleString());
     } catch (error) {
         console.error(error);

@@ -28,7 +28,7 @@ const getServiceByMerchantController = createAuthenticatedController(shoreAuth, 
 
 const sendNotificationsController = createAuthenticatedController(shoreAuth, sendNotifications);
 
-cron.schedule('48 16 * * *', sendNotificationsController);
+cron.schedule('00 18 * * *', sendNotificationsController);
 
 const ensureAuth = async (req, res, next) => {
     if (!shoreAuth.accessToken) {
