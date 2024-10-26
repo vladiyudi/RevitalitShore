@@ -7,11 +7,11 @@ const headers = {
 }
 
 async function createCustomer(req, res, shoreAuth) {
-    const { name, lastName, email, phone, location } = req.body;
+    const { name, lastName, email, phone, location, instagramId } = req.body;
     try {
         const merchants = await shoreAuth.makeAuthenticatedRequest('get', '/v2/merchants', null, headers)
         const merchant_id = findMerchantIdByName(location, merchants);
-        const data = customerForm(name, lastName, email, phone, merchant_id);
+        const data = customerForm(name, lastName, email, phone, merchant_id, instagramId);
         const response = await shoreAuth.makeAuthenticatedRequest('post', '/v2/customers', data, headers);
         res.json(response);
     } catch (error) {
