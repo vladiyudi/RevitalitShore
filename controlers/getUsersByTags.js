@@ -5,9 +5,22 @@ const headers = {
 
 
 async function getUserByTags(req, res, shoreAuth) {
-    const {  phone, instagramId } = req.body;
+    let {  phone, instagramId } = req.body;
+
+    if (!phone) {
+        phone = '';
+    }
+    if (!instagramId) {
+        instagramId = '';
+    }
+
+    const params  = new URLSearchParams({
+        'filter[tags]': `${phone},${instagramId}`
+    }).toString();
+
+
     try {
-        const existingUser = await shoreAuth.makeAuthenticatedRequest('get', `/v2/customers?filter[tags]=${phone},${instagramId}`, null, headers);
+        const existingUser = await shoreAuth.makeAuthenticatedRequest('get', `/v2/customers?${params}`, null, headers);
         console.log(existingUser);
         res.json(existingUser);
     } catch (error) {
