@@ -11,6 +11,7 @@ const cancelAppointment = require('./controlers/cancelAppointment');
 const createCustomer = require('./controlers/createCustomer');
 const getServiceByMerchant = require('./controlers/getServiceByMerchant');
 const sendNotifications = require('./utils/SendNotifications');
+const getUserByTags = require('./controlers/getUsersByTags');
 
 app.use(express.json());
 
@@ -25,6 +26,7 @@ const bookAppoinmentController = createAuthenticatedController(shoreAuth, bookAp
 const cancelAppointmentController = createAuthenticatedController(shoreAuth, cancelAppointment);
 const createCustomerController = createAuthenticatedController(shoreAuth, createCustomer);
 const getServiceByMerchantController = createAuthenticatedController(shoreAuth, getServiceByMerchant);
+const getUserByTagsController = createAuthenticatedController(shoreAuth, getUserByTags);
 
 const sendNotificationsController = createAuthenticatedController(shoreAuth, sendNotifications);
 
@@ -51,6 +53,7 @@ app.post('/bookAppointment', bookAppoinmentController);
 app.post('/cancelAppointment', cancelAppointmentController);
 app.post('/createCustomer', createCustomerController);
 app.post('/servicesInMerchant', getServiceByMerchantController);
+app.post('/checkExistingUser', getUserByTagsController);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
