@@ -1,4 +1,4 @@
-const customerForm = (name, lastName, email, phone, merchantId) => {
+const customerForm = (name, lastName, email, phone, merchantId, instagramId=null) => {
     return {
         "data" : {
             "type" : "customers",
@@ -7,6 +7,7 @@ const customerForm = (name, lastName, email, phone, merchantId) => {
                 "opt_in_origin": "app-shell",
                 "vip" : false,
                 "custom_attributes" : [],
+                "tags" : [phone, instagramId],
             "given_name" : name,
             "surname" : lastName,
             "addresses" : [
