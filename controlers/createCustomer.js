@@ -13,6 +13,7 @@ async function createCustomer(req, res, shoreAuth) {
         const merchant_id = findMerchantIdByName(location, merchants);
         const data = customerForm(name, lastName, email, phone, merchant_id, instagramId);
         const response = await shoreAuth.makeAuthenticatedRequest('post', '/v2/customers', data, headers);
+        console.log('Customer created:', response);
         res.json(response);
     } catch (error) {
         console.error('Error creating customer:', error.response ? error.response.data : error.message);

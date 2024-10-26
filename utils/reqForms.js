@@ -7,7 +7,7 @@ const customerForm = (name, lastName, email, phone, merchantId, instagramId=null
                 "opt_in_origin": "app-shell",
                 "vip" : false,
                 "custom_attributes" : [],
-                "tags" : [phone, instagramId],
+                "tags" : [instagramId.toString(), phone.toString()],
             "given_name" : name,
             "surname" : lastName,
             "addresses" : [
@@ -23,7 +23,7 @@ const customerForm = (name, lastName, email, phone, merchantId, instagramId=null
             ],
             "phones" : [
                 {
-                    "name" : "Home",
+                    "name" : instagramId,
                     "value" : phone
                 }
             ],
