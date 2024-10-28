@@ -5,7 +5,7 @@ const headers = {
 
 
 async function getResources(req, res, shoreAuth) {
-    const response = await shoreAuth.makeAuthenticatedRequest('get', '/v2/resources/852eabb1-ff93-41cb-8f19-427be046786f', null, headers);
+    const response = await shoreAuth.makeAuthenticatedRequest('get', '/v2/resources?page[size]=20', null, headers);
     res.json(response);
     console.log(response.data);
 }
