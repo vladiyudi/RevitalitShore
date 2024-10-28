@@ -2,8 +2,8 @@ const { bookApointmentForm } = require('../utils/reqForms.js');
 
 
 async function bookAppointment(req, res, shoreAuth) {
-    const { merchantId, serviceId, startTime, duration, title, customerId } = req.body;
-    const data = bookApointmentForm(merchantId, serviceId, startTime, duration, title, customerId);
+    const { merchantId, serviceId, startTime, duration, title, customerId, resourceId } = req.body;
+    const data = bookApointmentForm(merchantId, serviceId, startTime, duration, title, customerId, resourceId);
     const headers = {
         'Content-Type': 'application/vnd.api+json',
         'Accept': 'application/vnd.api+json'

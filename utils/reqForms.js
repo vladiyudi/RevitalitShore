@@ -48,7 +48,7 @@ const customerForm = (name, lastName, email, phone, merchantId, instagramId=null
 
 
 
-const bookApointmentForm = (merchantId, serviceId, startTime, duration, title, customerId) => {
+const bookApointmentForm = (merchantId, serviceId, startTime, duration, title, customerId, resourceId) => {
     return {
             "data": {
                 "type": "appointments",
@@ -74,7 +74,7 @@ const bookApointmentForm = (merchantId, serviceId, startTime, duration, title, c
                             "break": false,
                             "with_customer": true,
                             "duration": duration,
-                            "resource_ids": [],
+                            "resource_ids": [resourceId],
                             "service_id": serviceId,
                             "employee_selected_by": "customer"
                         }
